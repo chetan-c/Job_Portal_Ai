@@ -1,7 +1,7 @@
 
 import express from 'express'
 
-import {login, register, deleteuser, forgotpassword, getallusers, updateuser } from '../controller/usercontroller.js';
+import {deleteuser, forgotpassword, getallusers, login, register, updateuser} from '../controller/usercontroller.js';
 
 
 const router=express.Router();

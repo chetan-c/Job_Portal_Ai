@@ -1,5 +1,6 @@
 import usermodel from '../models/usermodel.js';
-import bcrypt from 'bcryptjs'
+import bcrypt , { hash } from 'bcryptjs'
+
 
 export const register=async(req,res)=>{
     try {
@@ -64,6 +65,7 @@ export const getallusers=async (req,res)=>{
         return res.status(500).json({error:"internal server error"+error})
     }
 }
+
 export const updateuser=async (req,res)=>{
     try {
            let id=req.params.id;
@@ -82,6 +84,7 @@ export const updateuser=async (req,res)=>{
           return res.status(500).json({error:"internal server error"+error})
     }
 }
+
 export const forgotpassword=async (req,res)=>{
     try {
         let id=req.params.id;
@@ -103,6 +106,7 @@ export const forgotpassword=async (req,res)=>{
         return res.status(500).json({error:"internal server error"+error})
     }
 }
+
 export const deleteuser=async(req,res)=>{
    try {
      const id=req.params.id;
@@ -113,6 +117,7 @@ export const deleteuser=async(req,res)=>{
      if(!deleteduser){
         return res.status(404).json({error:"user not found deleted failed"})
      }
+
      return res.status(200).json({message:"user deleted successfully",user:deleteduser})
    } catch (error) {
     
