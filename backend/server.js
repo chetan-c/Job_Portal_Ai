@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectdb from "./db/dbconnect.js"
-import userrouter from "./controller/router/userroutes.js";
+import userrouter from "./router/userroutes.js";
 
 const app = express();
 dotenv.config();//load env variables
