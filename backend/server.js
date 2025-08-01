@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectdb from "./db/dbconnect.js"
 import userrouter from "./router/userroutes.js";
 import jobrouter from './router/jobsroutes.js';
+import jobapplictionrouter from './router/jobapplicationroutes.js'
+
 import cors from "cors";
 
 const app = express();
@@ -21,7 +23,8 @@ app.get('/api/home',(req,res)=>{
     res.status(200).send("Home page route checking");
 })
 //ROUTES
-app.use('/api',jobrouter)
+app.use('/api', jobrouter)
+app.use('/api',jobapplictionrouter)
 app.use('/api',userrouter)
 let port=process.env.port || 5051;
 app.listen(port, () => {
