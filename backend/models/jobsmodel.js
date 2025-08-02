@@ -39,12 +39,17 @@ const jobschema = new mongoose.Schema({
         type: String, 
         required: true 
     },
+
     shifts: { 
         type: String, 
         enum: ["Day", "Night", "Both"], 
         required: true 
     },
     requiredskills: [],
+     applyLink: {
+        type: String,
+        required: true
+    },
     userid:{type:mongoose.Schema.Types.ObjectId,ref:"users"},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
