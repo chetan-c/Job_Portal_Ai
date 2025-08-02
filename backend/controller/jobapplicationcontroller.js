@@ -1,6 +1,7 @@
 import jobsapplicationmodel from "../models/jobsapplication.js";
 import jobmodel from "../models/jobsmodel.js";
 import usermodel from "../models/usermodel.js";
+import nodemailer from "nodemailer"
 
 
 export const applyjob=async(req,res)=>{
@@ -22,6 +23,33 @@ export const applyjob=async(req,res)=>{
         const job=await jobmodel.findById(jobid);
         if(!job){
             return res.status(404).json({error:"jobid in valid"})
+        }
+
+       
+         try {
+            let transporter=nodemailer.createTransport({
+                service:'gmail',
+                auth:{
+                    user:'cckamble2004@gmail.com',
+                    pass:'cfup loxn azdr nahl'    
+                }
+            })
+
+            let mailinfo={
+                from:'cckamble2004@gmail.com',
+                to: user.email,
+                subject:`job applied ${job.title}`,
+                html:`
+                <h1 style="color:yellow">${job.title}</h1>
+                <p>${job.description}</p>
+                <p>location:${job.location}</p>
+                <p>apply link:${job.applyLink}</p>basa
+                `
+            }
+
+            await transporter.sendMail(mailinfo);
+        } catch (error) {
+            return res.status(500).json({error:'internal server error failed to sent mail'+error.message});
         }
 
         const newappliction=new jobsapplicationmodel({...req.body,jobid:jobid,userid:userid});
