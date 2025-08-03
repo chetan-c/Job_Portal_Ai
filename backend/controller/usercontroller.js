@@ -27,7 +27,7 @@ export const register=async(req,res)=>{
         
                     let mailinfo={
                         from:'cckamble2004@gmail.com',
-                        to:user.email,
+                        to:'asifnadaf962005@gmail.com',
                         subject:`register ${req.body.username}`,
                         html:`
                         <h1 style="color:red">hi man, you successfully registed Aishu job portal appiction and your username is ${req.body.username},your mail is ${req.body.email}</h1>
@@ -68,8 +68,11 @@ export const login=async(req,res)=>{
         }
 
         //step 4:check password
-      
-        if (user.password !== req.body.password || user.email!==req.body.email) {
+        let ismatchedpassword = await bcrypt.compare(password, user.password);
+        console.log('====================================');
+        console.log(ismatchedpassword);
+        console.log('====================================');
+        if (!ismatchedpassword) {
         return res.status(400).json({ error: "password not matched" });
         }
 
