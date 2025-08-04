@@ -9,7 +9,7 @@ This is the **backend API** for the CareerPath.io project — a full-stack AI-po
 
 ## 🚀 Features
 
-- JWT-based authentication
+
 - User registration & login
 - Admin job creation
 - Job application submission
